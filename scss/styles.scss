@@ -1,0 +1,25 @@
+*{
+    text-align: center;
+}
+
+.product-item{
+    background-color: lightblue;
+}
+
+#prod{
+    li{
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+form{
+    input{
+        border: 2px solid red;
+        width: 600px;
+    }
+    textarea{
+        border: 2px solid red;
+    }
+}

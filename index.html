@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BS product list</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="js/script.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <h1>our products</h1>
+        <div class="main">
+            <ul id="prod">
+
+            </ul>
+        </div>
+        <div class="product-info">
+            <h1>product detail</h1>
+            <form>
+                Name:<br>
+                <input id="prod-name" type="text" name="name" readonly><br>
+                Number:<br>
+                <input id="prod-number" type="text" name="number" readonly>
+                <br>
+                <textarea id="prod-desc" name="description" cols="100" rows="10" readonly>description
+                    
+                </textarea>
+                <br>
+                <textarea id="prod-img" name="images" cols="100" rows="10" readonly>images
+                    
+                </textarea>
+                <br>
+            </form>
+            <button id="enable-update">UPDATE</button>
+            <button id="save-changes">SAVE</button>
+            <button id="cancel-update">CANCEL</button>
+        </div>
+    </body>
+</html>
