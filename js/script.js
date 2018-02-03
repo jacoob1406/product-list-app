@@ -1,23 +1,7 @@
 $(document).ready(function () {
 
-    /*    const xhttp = new XMLHttpRequest();
-     xhttp.onreadystatechange = function () {
-     if (this.readyState === 4 && this.status === 200) {
-     const response = JSON.parse(xhttp.responseText);
-     // console.log(response[0].name);
-     let output = '';
-     for (var i = 0; i < response.length; i++) {
-     output += '<li class="product-item" data-key="' + response[i].name + '">' + response[i].name + '</li>';
-     
-     }
-     document.getElementById('prod').innerHTML = output;
-     }
-     };
-     xhttp.open("GET", "products.json", true);
-     xhttp.send();
-     */
-    var json = (function () {
-        var json = null;
+    let json = (function () {
+        let json = null;
         $.ajax({
             'async': false,
             'global': false,
@@ -30,23 +14,24 @@ $(document).ready(function () {
         return json;
     })();
 
-    let output = '';
-    for (var i = 0; i < json.length; i++) {
-        var li = document.createElement("li");
+    for (let i = 0; i < json.length; i++) {
+        let li = document.createElement("li");
         li.innerHTML = json[i].name;
-        li.className = "product-item";
+        li.className = "container__list__item";
         li.dataset.key = json[i].name;
         $('#prod').append(li);
     }
+
     let index;
 
     function showDetails() {
         $('#prod-name').val(json[index].name);
         $('#prod-number').val(json[index].number);
         $('#prod-desc').val(json[index].description);
+        $('#index').val(index);
 
         let imgs = '';
-        for (var i = 0; i < json[index].images.length; i++) {
+        for (let i = 0; i < json[index].images.length; i++) {
             imgs += json[index].images[i].url;
             imgs += '\n';
         }
@@ -57,33 +42,36 @@ $(document).ready(function () {
             $('#prod-img').val('no images found');
     }
 
-    $('.product-item').on('click', function () {
+    $('.container__list__item').on('click', function () {
         index = $(this).index();
-        showDetails()
+        showDetails();
+        $('#prod-info').css('display', 'block');
+    });
+
+    $('#escape').on('click', function () {
+        $('#prod-info').css('display', 'none');
     });
 
     $('#enable-update').on('click', function () {
-        $("#prod-name").attr("readonly", false);
-        $("#prod-number").attr("readonly", false);
-        $("#prod-desc").attr("readonly", false);
-        $("#prod-img").attr("readonly", false);
+        $("#prod-name").attr("readonly", false).css('background-color', '#e5e0e0');
+        $("#prod-number").attr("readonly", false).css('background-color', '#e5e0e0');
+        $("#prod-desc").attr("readonly", false).css('background-color', '#e5e0e0');
+        $("#prod-img").attr("readonly", false).css('background-color', '#e5e0e0');
+        $(this).hide();
+        $('#submit').css('display', 'inline');
+        $('#cancel-update').css('display', 'inline');
     });
 
     $('#cancel-update').on('click', function () {
         showDetails();
-        $("#prod-name").attr("readonly", true);
-        $("#prod-number").attr("readonly", true);
-        $("#prod-desc").attr("readonly", true);
-        $("#prod-img").attr("readonly", true);
+        $("#prod-name").attr("readonly", true).css('background-color', '#98dafc');
+        $("#prod-number").attr("readonly", true).css('background-color', '#EDDBCD');
+        $("#prod-desc").attr("readonly", true).css('background-color', '#98dafc');
+        $("#prod-img").attr("readonly", true).css('background-color', '#98dafc');
+        $('#submit').css('display', 'none');
+        $('#cancel-update').css('display', 'none');
+        $('#enable-update').css('display', 'inline');
     });
-    $('#save-changes').on('click', function () {
-        json[index].name = $("#prod-name").val();
-        json[index].number = $("#prod-number").val();
-        json[index].description = $("#prod-desc").val();
-        // json[index].images = $("#prod-img").val();
-        showDetails();
-    });
-
 });
 
 
