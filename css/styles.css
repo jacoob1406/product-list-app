@@ -116,6 +116,8 @@
     .product-info__form__label {
       color: #C06014;
       padding: 12px 0 5px 0; }
+      .product-info__form__label__help {
+        display: none; }
     .product-info__form__input {
       width: 80%;
       background-color: #98dafc;

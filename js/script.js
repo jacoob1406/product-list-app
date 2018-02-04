@@ -56,6 +56,7 @@ $(document).ready(function () {
         $('#submit').css('display', 'none');
         $('#cancel-update').css('display', 'none');
         $('#enable-update').css('display', 'inline');
+        $('#help').css('display', 'none');
     }
 
     let index;
@@ -71,6 +72,7 @@ $(document).ready(function () {
         $(this).hide();
         $('#submit').css('display', 'inline');
         $('#cancel-update').css('display', 'inline');
+        $('#help').css('display', 'inline');
     });
 
     $('#cancel-update').on('click', function () {

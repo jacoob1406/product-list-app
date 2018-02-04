@@ -159,6 +159,10 @@ $col3: #98dafc;  //blue
         &__label{
             color: $col1;
             padding: 12px 0 5px 0;
+
+            &__help{
+                display: none;
+            }
         }
 
         &__input{
