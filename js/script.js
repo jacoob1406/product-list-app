@@ -22,8 +22,6 @@ $(document).ready(function () {
         $('#prod').append(li);
     }
 
-    let index;
-
     function showDetails() {
         $('#prod-name').val(json[index].name);
         $('#prod-number').val(json[index].number);
@@ -42,35 +40,46 @@ $(document).ready(function () {
             $('#prod-img').val('no images found');
     }
 
+    function readOnlyChange(bool, color) {
+        $("#prod-name").attr("readonly", bool).css('background-color', color);
+        if (color === '#e5e0e0')
+            $("#prod-number").attr("readonly", bool).css('background-color', color);
+        else
+            $("#prod-number").attr("readonly", bool).css('background-color', '#EDDBCD');
+        $("#prod-desc").attr("readonly", bool).css('background-color', color);
+        $("#prod-img").attr("readonly", bool).css('background-color', color);
+    }
+
+    function cancelUpdate() {
+        showDetails();
+        readOnlyChange(true, '#98dafc');
+        $('#submit').css('display', 'none');
+        $('#cancel-update').css('display', 'none');
+        $('#enable-update').css('display', 'inline');
+    }
+
+    let index;
+
     $('.container__list__item').on('click', function () {
         index = $(this).index();
         showDetails();
         $('#prod-info').css('display', 'block');
     });
 
-    $('#escape').on('click', function () {
-        $('#prod-info').css('display', 'none');
-    });
-
     $('#enable-update').on('click', function () {
-        $("#prod-name").attr("readonly", false).css('background-color', '#e5e0e0');
-        $("#prod-number").attr("readonly", false).css('background-color', '#e5e0e0');
-        $("#prod-desc").attr("readonly", false).css('background-color', '#e5e0e0');
-        $("#prod-img").attr("readonly", false).css('background-color', '#e5e0e0');
+        readOnlyChange(false, '#e5e0e0');
         $(this).hide();
         $('#submit').css('display', 'inline');
         $('#cancel-update').css('display', 'inline');
     });
 
     $('#cancel-update').on('click', function () {
-        showDetails();
-        $("#prod-name").attr("readonly", true).css('background-color', '#98dafc');
-        $("#prod-number").attr("readonly", true).css('background-color', '#EDDBCD');
-        $("#prod-desc").attr("readonly", true).css('background-color', '#98dafc');
-        $("#prod-img").attr("readonly", true).css('background-color', '#98dafc');
-        $('#submit').css('display', 'none');
-        $('#cancel-update').css('display', 'none');
-        $('#enable-update').css('display', 'inline');
+        cancelUpdate();
+    });
+
+    $('#escape').on('click', function () {
+        $('#prod-info').css('display', 'none');
+        cancelUpdate();
     });
 });
 
