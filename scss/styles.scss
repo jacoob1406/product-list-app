@@ -50,9 +50,10 @@ $col3: #98dafc;  //blue
 
     &__image{
         position: absolute;
-        top: -7px;
-        left: 5px;
-        width: 200px;
+        top: 5px;
+        left: 15px;
+        width: 130px;
+        @include border-radius(10px);
     }
 }
 

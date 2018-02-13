@@ -25,9 +25,13 @@
     margin: 0; }
   .header__image {
     position: absolute;
-    top: -7px;
-    left: 5px;
-    width: 200px; }
+    top: 5px;
+    left: 15px;
+    width: 130px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    border-radius: 10px; }
 
 .container {
   padding-top: 120px;
